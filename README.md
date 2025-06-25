@@ -378,7 +378,6 @@ For new features, please:
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/abir-shahadat-purab-672bab343)
 [![Email](https://img.shields.io/badge/Email-Contact-ea4335?style=for-the-badge&logo=gmail)](mailto:a.s.purab0@gmail.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-4f46e5?style=for-the-badge&logo=vercel)](https://repair-right-1a8c9.web.app/)
 
 ### 🌟 **Project Links**
 
