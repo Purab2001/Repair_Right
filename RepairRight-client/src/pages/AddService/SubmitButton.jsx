@@ -17,7 +17,7 @@ const SubmitButton = ({ loading, onSubmit }) => {
     <motion.button
       type="submit"
       onClick={onSubmit}
-      className="w-full relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white font-semibold py-4 px-6 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-primary text-white font-semibold py-4 px-6 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
       variants={buttonVariants}
       initial="idle"
       whileHover="hover"

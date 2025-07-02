@@ -53,7 +53,7 @@ const Team = () => {
                 className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12"
             >
                 <div>
-                    <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-indigo-900 uppercase rounded-full bg-indigo-100">
+                    <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-indigo-900 uppercase rounded-full bg-primary/10">
                         Expert Professionals
                     </p>
                 </div>

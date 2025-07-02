@@ -27,7 +27,7 @@ const ProviderInfo = ({ provider }) => {
                                 />
                             ) : null}
                             <div
-                                className="w-full h-full bg-indigo-600 flex items-center justify-center"
+                                className="w-full h-full bg-primary flex items-center justify-center"
                                 style={{ display: provider.image ? 'none' : 'flex' }}
                             >
                                 <span className="text-2xl font-bold text-white">

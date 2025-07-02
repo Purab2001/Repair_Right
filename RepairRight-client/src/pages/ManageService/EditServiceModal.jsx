@@ -151,7 +151,7 @@ const EditServiceModal = ({
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="inline-flex items-center justify-center px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer flex-1"
+                            className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer flex-1"
                         >
                             {isLoading ? (
                                 <>

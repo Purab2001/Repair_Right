@@ -8,8 +8,7 @@ import Logo from './Logo'
 import MobileMenu from './MobileMenu'
 import DesktopMenu from './DesktopMenu'
 import UserProfile from './UserProfile'
-import LoginButton from './LoginButton'
-import Switch from './Switch'
+import ThemeToggleButton from './ThemeToggleButton'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -45,72 +44,68 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative"
+      className="sticky top-0 z-50"
     >
       <motion.div
-        className="navbar bg-base-100 px-4 md:px-14 lg:px-28 container mx-auto"
+        className="navbar bg-base-100 mx-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        {/* Logo and Mobile Menu */}
-        <motion.div
-          className="navbar-start"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <Logo
-            isMenuOpen={isMenuOpen}
-            toggleMenu={toggleMenu}
-          />
-          <MobileMenu
-            isMenuOpen={isMenuOpen}
-            toggleMenu={toggleMenu}
-            user={user}
-          />
-        </motion.div>
-
-        {/* Desktop Menu */}
-        <div className="navbar-center hidden lg:flex">
-          <DesktopMenu user={user} />
-        </div>
-
-        {/* User Profile and Actions */}
-        <motion.div
-          className="navbar-end"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
+        <div className="container mx-auto px-4 md:px-14 lg:px-28 flex justify-between items-center w-full">
+          {/* Logo and Mobile Menu */}
           <motion.div
-            className="mr-4 hidden lg:block"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
+            className="navbar-start"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Switch />
+            <Logo isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+            <MobileMenu
+              isMenuOpen={isMenuOpen}
+              toggleMenu={toggleMenu}
+              user={user}
+            />
           </motion.div>
 
-          {user ? (
-            <UserProfile
-              user={user}
-              isProfileOpen={isProfileOpen}
-              setIsProfileOpen={setIsProfileOpen}
-              dropdownRef={dropdownRef}
-              handleLogout={handleLogout}
-              onProfileClick={() => navigate('/profile')}
-            />
-          ) : (
+          {/* Desktop Menu */}
+          <div className="navbar-center hidden lg:flex">
+            <DesktopMenu user={user} />
+          </div>
+
+          {/* User Profile and Actions */}
+          <motion.div
+            className="navbar-end"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <motion.div
+              className="mr-4 hidden lg:block"
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
             >
-              <NavLink to="/login">
-                <LoginButton />
-              </NavLink>
+              <ThemeToggleButton />
             </motion.div>
-          )}
-        </motion.div>
+
+            {user ? (
+              <UserProfile
+                user={user}
+                isProfileOpen={isProfileOpen}
+                setIsProfileOpen={setIsProfileOpen}
+                dropdownRef={dropdownRef}
+                handleLogout={handleLogout}
+                onProfileClick={() => navigate("/profile")}
+              />
+            ) : (
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <NavLink to="/login">
+                  <button className="btn btn-primary">Login</button>
+                </NavLink>
+              </motion.div>
+            )}
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* Mobile Menu Overlay */}
@@ -125,7 +120,7 @@ const Navbar = () => {
         />
       )}
     </motion.div>
-  )
+  );
 }
 
 export default Navbar

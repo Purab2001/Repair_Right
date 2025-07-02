@@ -67,7 +67,7 @@ const WhyChooseUs = () => {
     return (
         <motion.section
             ref={ref}
-            className="py-16 bg-base-100 relative overflow-hidden"
+            className="py-16 bg-base-200 relative overflow-hidden"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}

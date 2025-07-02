@@ -28,7 +28,7 @@ const ShowAllButton = memo(function ShowAllButton({ onClick }) {
     >
       <motion.button
         onClick={onClick}
-        className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 rounded-xl font-semibold text-lg shadow-lg cursor-pointer text-white"
+        className="btn btn-primary hover:bg-secondary btn-xl"
         whileHover={{
           scale: 1.05,
           boxShadow: "0 15px 30px -5px rgba(99, 102, 241, 0.5)",

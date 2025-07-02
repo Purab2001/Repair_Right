@@ -48,6 +48,16 @@ export const getRouteMetadata = (pathname, customTitle = null) => {
             description: 'Manage incoming service requests, update booking status, and communicate with customers.',
             keywords: 'service dashboard, service requests, booking management, customer management',
         },
+        '/faqs': {
+            title: 'FAQs',
+            description: 'Find answers to common questions about booking, providing, and managing services on RepairRight.',
+            keywords: 'faqs, frequently asked questions, help, support, RepairRight',
+        },
+        '/about': {
+            title: 'About Us',
+            description: 'Learn more about RepairRight, our mission, and our commitment to quality home repair services.',
+            keywords: 'about us, company, RepairRight, mission, home repair, professional services',
+        },
     }
 
     if (pathname.startsWith('/services/') && pathname !== '/services') {

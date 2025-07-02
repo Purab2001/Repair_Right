@@ -8,49 +8,38 @@ const ServiceCard = ({ service }) => {
     const isOwnService = user?.email === service?.provider?.email
 
     return (
-        <div className="bg-base-100 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <div className="card bg-base-100 shadow overflow-hidden relative">
             {isOwnService && (
-                <div className="bg-primary text-white px-3 py-1 text-xs font-medium">
+                <div className="absolute top-0 left-0 bg-primary text-white px-3 py-1 text-xs font-medium rounded-br-xl z-10">
                     <FiUser className="inline mr-1" />
                     Your Service
                 </div>
             )}
-
-            <div className="relative h-48 overflow-hidden">
+            <figure className="relative">
                 <img
                     src={service.imageUrl}
                     alt={service.name}
-                    className="w-full h-full object-cover"
+                    className="object-cover w-full h-60 rounded-t-lg"
+                    loading="lazy"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-primary font-bold flex items-center gap-1">
-                        <FiDollarSign className="text-sm" />
-                        {service.price}
-                    </span>
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1">
+                    <FiDollarSign className="text-sm text-primary" />
+                    <span className="text-primary font-bold">{service.price}</span>
                 </div>
-            </div>
-
-            <div className="p-6">
-                <h3 className="text-xl font-semibold text-base-content mb-2 line-clamp-2">
-                    {service.name}
-                </h3>
-
-                <p className="text-base-content/70 mb-3 flex items-center gap-1">
+            </figure>
+            <div className="card-body">
+                <h2 className="card-title">{service.name}</h2>
+                <p className="flex items-center gap-1 text-base-content/70 mb-1">
                     <FiMapPin className="text-sm" />
                     {service.area}
                 </p>
-
-                <p className="text-base-content/80 text-sm mb-4 line-clamp-3">
+                <p className="line-clamp-3 text-base-content/80 text-sm mb-2">
                     {service.description}
                 </p>
-
-                <div className="flex justify-between items-center">
-                    <div className="text-sm text-base-content/60">
-                        by {service.provider?.name}
-                    </div>
+                <div className="card-actions justify-end">
                     <Link
                         to={`/services/${service._id}`}
-                        className={`btn btn-sm ${isOwnService ? 'btn-outline btn-primary' : 'btn-primary'}`}
+                        className={`btn btn-primary btn-sm ${isOwnService ? 'btn-outline' : ''}`}
                     >
                         {isOwnService ? 'View Details' : 'Book Now'}
                     </Link>

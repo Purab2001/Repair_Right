@@ -32,7 +32,7 @@ const Logo = ({ isMenuOpen, toggleMenu }) => {
                     <motion.img
                         src={logo}
                         alt="logo"
-                        className='w-12 h-12 -ml-4'
+                        className='w-10 h-10 -ml-4'
                         initial={{ rotate: -10, scale: 0.8 }}
                         animate={{ rotate: 0, scale: 1 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
@@ -44,18 +44,7 @@ const Logo = ({ isMenuOpen, toggleMenu }) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
                     >
-                        Repair<motion.span
-                            animate={{
-                                color: ['#4f46e5', '#7c3aed', '#ec4899', '#f59e0b', '#10b981', '#4f46e5']
-                            }}
-                            transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "linear"
-                            }}
-                        >
-                            Right
-                        </motion.span>
+                        Repair<span className='text-primary'>Right</span>
                     </motion.span>
                 </motion.button>
             </div>
@@ -84,7 +73,7 @@ const Logo = ({ isMenuOpen, toggleMenu }) => {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                         >
-                            Repair<span className='text-indigo-600'>Right</span>
+                            Repair<span className='text-primary'>Right</span>
                         </motion.span>
                     </Link>
                 </motion.div>

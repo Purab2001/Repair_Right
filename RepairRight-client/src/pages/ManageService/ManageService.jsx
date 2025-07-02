@@ -105,17 +105,21 @@ const ManageService = () => {
   if (loading) return <LoadingSpinner />
 
   return (
-    <div className='bg-base-200'>
+    <div className="bg-base-200">
       <PageHelmet />
       <div className="container mx-auto px-4 py-12 md:px-14 lg:px-28">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl font-extrabold text-indigo-700 mb-2">My Services</h1>
-            <p className="text-base-content/70">Manage and update your service offerings</p>
+            <h1 className="text-4xl font-extrabold text-secondary mb-2">
+              My Services
+            </h1>
+            <p className="text-base-content/70">
+              Manage and update your service offerings
+            </p>
           </div>
           <Link
             to="/add-service"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
           >
             <FiPlus className="w-4 h-4" />
             Add New Service
@@ -132,10 +136,12 @@ const ManageService = () => {
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🔧</div>
             <h3 className="text-xl font-semibold mb-2">No services yet</h3>
-            <p className="text-base-content/70 mb-4">Start by adding your first service</p>
+            <p className="text-base-content/70 mb-4">
+              Start by adding your first service
+            </p>
             <Link
               to="/add-service"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
             >
               <FiPlus className="w-4 h-4" />
               Add Service
@@ -171,7 +177,7 @@ const ManageService = () => {
                           {service.area}
                         </p>
                       </div>
-                      <div className="flex items-center gap-2 text-indigo-600 font-bold text-lg">
+                      <div className="flex items-center gap-2 text-primary font-bold text-lg">
                         <FiDollarSign className="w-5 h-5" />
                         {service.price}
                       </div>
@@ -184,13 +190,14 @@ const ManageService = () => {
                     <div className="flex gap-3">
                       <motion.button
                         onClick={() => handleEdit(service)}
-                        className="inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-indigo-600 text-indigo-600 font-medium rounded-lg hover:bg-indigo-600 hover:text-white transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+                        className="inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-white transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
                         <FiEdit className="w-4 h-4" />
                         Edit
-                      </motion.button>                    <motion.button
+                      </motion.button>{" "}
+                      <motion.button
                         onClick={() => handleDelete(service._id, service.name)}
                         className="inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-red-500 text-red-500 font-medium rounded-lg hover:bg-red-500 hover:text-white transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
                         whileHover={{ scale: 1.05 }}
@@ -218,7 +225,7 @@ const ManageService = () => {
         />
       </div>
     </div>
-  )
+  );
 }
 
 export default ManageService

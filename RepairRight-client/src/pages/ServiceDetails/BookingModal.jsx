@@ -23,9 +23,15 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
           </h3>
         </div>
 
-        <form onSubmit={e => { e.preventDefault(); onSubmit() }} className="space-y-5">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit();
+          }}
+          className="space-y-5"
+        >
           {/* Service Summary Card */}
-          <div className="bg-indigo-600/10 p-6 rounded-2xl border border-primary/20">
+          <div className="bg-primary/10 p-6 rounded-2xl border border-primary/20">
             <div className="flex items-center gap-4 mb-4">
               <img
                 src={service.imageUrl}
@@ -34,10 +40,14 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
               />
               <div>
                 <h4 className="font-bold text-lg">{service.name}</h4>
-                <p className="text-base-content/70">by {service.provider.name}</p>
+                <p className="text-base-content/70">
+                  by {service.provider.name}
+                </p>
               </div>
               <div className="ml-auto text-right">
-                <div className="text-2xl font-bold text-primary">${service.price}</div>
+                <div className="text-2xl font-bold text-primary">
+                  ${service.price}
+                </div>
                 <div className="text-sm text-base-content/70">Service Fee</div>
               </div>
             </div>
@@ -54,7 +64,9 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
               <div className="space-y-4">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-medium">Email Address</span>
+                    <span className="label-text font-medium">
+                      Email Address
+                    </span>
                   </label>
                   <input
                     type="email"
@@ -86,7 +98,9 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
               <div className="space-y-4">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-medium">Service Date *</span>
+                    <span className="label-text font-medium">
+                      Service Date *
+                    </span>
                   </label>
                   <input
                     name="date"
@@ -95,13 +109,15 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
                     onChange={onFormChange}
                     className="input input-bordered bg-base-100 border-none focus:border-primary"
                     required
-                    min={new Date().toISOString().split('T')[0]}
+                    min={new Date().toISOString().split("T")[0]}
                   />
                 </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-medium">Special Instructions</span>
+                    <span className="label-text font-medium">
+                      Special Instructions
+                    </span>
                     <span className="label-text-alt">(Optional)</span>
                   </label>
                   <textarea
@@ -120,7 +136,7 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
           <button
             type="submit"
             disabled={isLoading || !formData.date}
-            className="inline-flex items-center justify-center px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer w-full"
+            className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer w-full"
           >
             {isLoading ? (
               <>
@@ -142,7 +158,7 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
         onClick={onClose}
       />
     </div>
-  )
+  );
 }
 
 export default BookingModal

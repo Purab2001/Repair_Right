@@ -52,7 +52,7 @@ const Header = () => {
     return (
         <motion.div
             ref={ref}
-            className="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden"
+            className="relative min-h-[50vh] lg:min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -82,7 +82,7 @@ const Header = () => {
                             className="inline-block"
                             variants={fadeInUpVariants}
                         >
-                            <span className="inline-block px-4 py-2 bg-indigo-600/90 backdrop-blur-sm text-white text-sm font-semibold rounded-full">
+                            <span className="inline-block px-4 py-2 bg-primary backdrop-blur-sm text-white text-sm font-semibold rounded-full">
                                 🔧 RepairRight Platform
                             </span>
                         </motion.div>
@@ -125,7 +125,7 @@ const Header = () => {
                             >
                                 <Link
                                     to="/services"
-                                    className="inline-flex items-center justify-center px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl group"
+                                    className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl group"
                                 >
                                     <FiTool className="mr-2" />
                                     Browse Services
@@ -187,7 +187,7 @@ const Header = () => {
                             transition={{ duration: 0.3 }}
                         >
                             <div className="flex items-center space-x-4">
-                                <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center">
+                                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                                     <FiTool className="text-white text-xl" />
                                 </div>
                                 <div className="text-white">

@@ -268,7 +268,7 @@ const Register = () => {
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-white font-semibold bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-lg hover:from-indigo-400 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-white font-semibold bg-gradient-to-r from-indigo-500 to-primary rounded-lg hover:from-indigo-400 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-900 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {loading ? (
                     <>
@@ -297,7 +297,7 @@ const Register = () => {
                 type="button"
                 onClick={handleGoogleSignup}
                 disabled={loading}
-                className="btn btn-outline w-full font-semibold border-base-300 hover:border-indigo-600 hover:bg-indigo-600 hover:text-primary-content shadow-none py-3 rounded-lg"
+                className="btn btn-outline w-full font-semibold border-base-300 hover:border-primary hover:bg-primary hover:text-primary-content shadow-none py-3 rounded-lg"
               >
                 <FcGoogle className="text-lg" />
                 Continue with Google

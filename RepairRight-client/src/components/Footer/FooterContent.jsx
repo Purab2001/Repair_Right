@@ -139,14 +139,14 @@ const FooterContent = ({ itemVariants, containerVariants }) => {
             whileHover={{ x: 5 }}
             transition={{ duration: 0.2 }}
           >
-            <Link to="/about-us">About Us</Link>
+            <Link to="/about">About Us</Link>
           </motion.li>
           <motion.li
             className="text-base-content/70 hover:text-primary cursor-pointer transition-colors text-sm"
             whileHover={{ x: 5 }}
             transition={{ duration: 0.2 }}
           >
-            <Link to="/terms-of-service">Terms of Service</Link>
+            <Link to="/faqs">FAQs</Link>
           </motion.li>
         </ul>
       </motion.div>

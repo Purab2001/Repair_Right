@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Team from '../components/Team'
 import WhyChooseUs from '../components/WhyChooseUs'
 import PopularServices from '../components/PopularServices/PopularServices'
+import Testimonials from '../components/Testimonials'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <PopularServices />
       <div className='bg-base-200'>
         <Team />
+      <Testimonials />
       </div>
       <WhyChooseUs />
     </div>
