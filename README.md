@@ -376,7 +376,7 @@ For new features, please:
 **Abir Shahadat Purab**  
 *Full-Stack Developer & RepairRight Creator*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/abir-shahadat-purab-672bab343)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/a-s-purab)
 [![Email](https://img.shields.io/badge/Email-Contact-ea4335?style=for-the-badge&logo=gmail)](mailto:a.s.purab0@gmail.com)
 
 ### 🌟 **Project Links**
