@@ -1,43 +1,43 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router'
+import React, { useState, useRef, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router";
 // eslint-disable-next-line no-unused-vars
-import { motion } from 'motion/react'
-import { useAuth } from '../../context/AuthContext'
-import { confirmLogout } from '../../ui/CustomSwal'
-import Logo from './Logo'
-import MobileMenu from './MobileMenu'
-import DesktopMenu from './DesktopMenu'
-import UserProfile from './UserProfile'
-import ThemeToggleButton from './ThemeToggleButton'
+import { motion } from "motion/react";
+import { useAuth } from "../../context/AuthContext";
+import { confirmLogout } from "../../ui/CustomSwal";
+import Logo from "./Logo";
+import MobileMenu from "./MobileMenu";
+import DesktopMenu from "./DesktopMenu";
+import UserProfile from "./UserProfile";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isProfileOpen, setIsProfileOpen] = useState(false)
-  const dropdownRef = useRef(null)
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleLogout = async () => {
-    const confirmed = await confirmLogout()
-    if (!confirmed) return
+    const confirmed = await confirmLogout();
+    if (!confirmed) return;
     try {
-      await logout()
+      await logout();
     } catch (error) {
-      console.error('Error logging out:', error)
+      console.error("Error logging out:", error);
     }
-  }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsProfileOpen(false)
+        setIsProfileOpen(false);
       }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <motion.div
@@ -98,11 +98,24 @@ const Navbar = () => {
                 onProfileClick={() => navigate("/profile")}
               />
             ) : (
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <NavLink to="/login">
-                  <button className="btn btn-primary">Login</button>
-                </NavLink>
-              </motion.div>
+              <div className="flex gap-2">
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <NavLink to="/login">
+                    <button className="btn btn-primary">Login</button>
+                  </NavLink>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <NavLink to="/register">
+                    <button className="btn btn-primary">Register</button>
+                  </NavLink>
+                </motion.div>
+              </div>
             )}
           </motion.div>
         </div>
@@ -121,6 +134,6 @@ const Navbar = () => {
       )}
     </motion.div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
