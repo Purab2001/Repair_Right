@@ -30,7 +30,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: App,
-    errorElement: <Error />,
     hydrateFallbackElement: <LoadingSpinner />,
     children: [
       {
@@ -144,11 +143,11 @@ const router = createBrowserRouter([
           </SuspenseWrapper>
         ),
       },
-      {
-        path: "*",
-        Component: Error,
-      },
     ],
+  },
+  {
+    path: "*",
+    element: <Error />
   },
 ]);
 

@@ -11,7 +11,7 @@ const Error = () => {
   }
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-base-200 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
         {/* Lottie Animation */}
         <div className="mb-8">

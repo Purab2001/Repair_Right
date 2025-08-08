@@ -6,11 +6,34 @@ import ServiceCard from "../../ui/ServiceCard";
 import ShowAllButton from "./ShowAllButton";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 
+// Custom hook for responsive slice
+function useResponsiveSlice() {
+  const [count, setCount] = useState(4);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 1024) {
+        setCount(8); // lg and above
+      } else if (window.innerWidth >= 768) {
+        setCount(6); // md
+      } else {
+        setCount(4); // mobile
+      }
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return count;
+}
+
 const PopularServices = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { user } = useAuth();
+  const visibleCount = useResponsiveSlice();
 
   useEffect(() => {
     let isMounted = true;
@@ -20,7 +43,7 @@ const PopularServices = () => {
           "https://repair-right-server.vercel.app/services"
         );
         const data = await response.json();
-        const mapped = data.slice(0, 6).map((service) => ({
+        const mapped = data.slice(0, 8).map((service) => ({
           _id: service._id,
           imageUrl: service.imageUrl,
           serviceName: service.name,
@@ -68,8 +91,8 @@ const PopularServices = () => {
     <section className="py-16 lg:py-20">
       <div className="px-4 md:px-14 lg:px-28 container mx-auto">
         <PopularServicesHeader />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {services.slice(0, 6).map((service) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {services.slice(0, visibleCount).map((service) => (
             <ServiceCard
               key={service._id}
               service={service}
