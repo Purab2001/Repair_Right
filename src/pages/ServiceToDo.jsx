@@ -4,13 +4,10 @@ import { apiService } from "../services/apiService";
 import LoadingSpinner from "../ui/LoadingSpinner";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import {
-  FiCalendar,
-  FiUser,
-  FiDollarSign
-} from "react-icons/fi";
+import { FiCalendar, FiUser, FiDollarSign } from "react-icons/fi";
 import PageHelmet from "../components/PageHelmet";
 import { toastSuccess, toastError } from "../ui/CustomHotToast";
+import Alert from "../ui/Alert";
 
 const ServiceToDo = () => {
   const { user } = useAuth();
@@ -87,11 +84,7 @@ const ServiceToDo = () => {
           </p>
         </div>
 
-        {error && (
-          <div className="alert alert-error mb-6">
-            <span>{error}</span>
-          </div>
-        )}
+        <Alert type="error" message={error} className="mb-6" />
 
         {bookings.length === 0 ? (
           <div className="text-center py-16">

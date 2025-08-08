@@ -1,95 +1,96 @@
-import React, { useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router'
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router";
 // eslint-disable-next-line no-unused-vars
-import { motion } from 'motion/react'
-import Lottie from 'lottie-react'
-import { useAuth } from '../context/AuthContext'
-import { FiMail, FiLock, FiLogIn, FiEye, FiEyeOff } from 'react-icons/fi'
-import { FcGoogle } from 'react-icons/fc'
-import PageHelmet from '../components/PageHelmet'
-import loginData from '../assets/login.json'
-import { toastSuccess, toastError } from '../ui/CustomHotToast'
+import { motion } from "motion/react";
+import Lottie from "lottie-react";
+import { useAuth } from "../context/AuthContext";
+import { FiMail, FiLock, FiLogIn, FiEye, FiEyeOff } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
+import PageHelmet from "../components/PageHelmet";
+import loginData from "../assets/login.json";
+import { toastSuccess, toastError } from "../ui/CustomHotToast";
+import Alert from "../ui/Alert";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -20 }
-}
+  out: { opacity: 0, y: -20 },
+};
 
 const itemVariants = {
   initial: { opacity: 0, y: 20 },
-  in: { opacity: 1, y: 0 }
-}
+  in: { opacity: 1, y: 0 },
+};
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  })
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const { loginWithEmail, loginWithGoogle } = useAuth()
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { loginWithEmail, loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/'
+  const from = location.state?.from?.pathname || "/";
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-    if (error) setError('')
-  }
+      [e.target.name]: e.target.value,
+    });
+    if (error) setError("");
+  };
 
   const handleLogin = async (e) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    const { email, password } = formData
+    const { email, password } = formData;
 
     if (!email || !password) {
-      setError('Please fill in all fields')
-      setLoading(false)
-      return
+      setError("Please fill in all fields");
+      setLoading(false);
+      return;
     }
 
-    const result = await loginWithEmail(email, password)
+    const result = await loginWithEmail(email, password);
 
     if (result.success) {
-      toastSuccess(`Welcome, ${result.user?.displayName || ''}!`)
-      navigate(from, { replace: true })
+      toastSuccess(`Welcome, ${result.user?.displayName || ""}!`);
+      navigate(from, { replace: true });
     } else {
-      setError(result.error || 'Login failed')
-      toastError(result.error || 'Login failed')
+      setError(result.error || "Login failed");
+      toastError(result.error || "Login failed");
     }
 
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   const handleGoogleLogin = async () => {
-    setError('')
-    setLoading(true)
+    setError("");
+    setLoading(true);
 
-    const result = await loginWithGoogle()
+    const result = await loginWithGoogle();
 
     if (result.success) {
-      toastSuccess(`Welcome, ${result.user?.displayName || ''}!`)
-      navigate(from, { replace: true })
+      toastSuccess(`Welcome, ${result.user?.displayName || ""}!`);
+      navigate(from, { replace: true });
     } else {
-      setError(result.error || 'Login failed')
-      toastError(result.error || 'Login failed')
+      setError(result.error || "Login failed");
+      toastError(result.error || "Login failed");
     }
 
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
   return (
     <motion.div
       initial="initial"
@@ -119,12 +120,19 @@ const Login = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center"
           >
-            <h2 className="text-3xl font-bold text-base-content mb-2 text-center">Welcome Back!</h2>
-            <p className='text-center text-base-content/70 mb-8'>Sign in to continue to your account.</p>
+            <h2 className="text-3xl font-bold text-base-content mb-2 text-center">
+              Welcome Back!
+            </h2>
+            <p className="text-center text-base-content/70 mb-8">
+              Sign in to continue to your account.
+            </p>
 
             <form onSubmit={handleLogin} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-base-content/80 mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-base-content/80 mb-1"
+                >
                   Email Address
                 </label>
                 <div className="relative">
@@ -146,7 +154,10 @@ const Login = () => {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-base-content/80 mb-1">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-base-content/80 mb-1"
+                >
                   Password
                 </label>
                 <div className="relative">
@@ -174,18 +185,7 @@ const Login = () => {
                 </div>
               </div>
 
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="alert alert-error"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>{error}</span>
-                </motion.div>
-              )}
+              <Alert type="error" message={error} />
 
               <div>
                 <motion.button
@@ -197,9 +197,25 @@ const Login = () => {
                 >
                   {loading ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Signing In...
                     </>
@@ -234,8 +250,11 @@ const Login = () => {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="mt-8 text-center text-sm text-base-content/70"
             >
-              Don't have an account?{' '}
-              <Link to="/register" className="font-medium text-primary hover:text-primary-focus hover:underline">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="font-medium text-primary hover:text-primary-focus hover:underline"
+              >
                 Sign Up
               </Link>
             </motion.p>
@@ -243,7 +262,7 @@ const Login = () => {
         </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

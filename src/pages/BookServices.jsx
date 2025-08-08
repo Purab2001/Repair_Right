@@ -4,12 +4,9 @@ import { apiService } from "../services/apiService";
 import LoadingSpinner from "../ui/LoadingSpinner";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import {
-  FiCalendar,
-  FiUser,
-  FiMapPin,
-  FiDollarSign} from "react-icons/fi";
+import { FiCalendar, FiUser, FiMapPin, FiDollarSign } from "react-icons/fi";
 import PageHelmet from "../components/PageHelmet";
+import Alert from "../ui/Alert";
 
 const BookedServices = () => {
   const { user } = useAuth();
@@ -63,11 +60,7 @@ const BookedServices = () => {
           </p>
         </div>
 
-        {error && (
-          <div className="alert alert-error mb-6">
-            <span>{error}</span>
-          </div>
-        )}
+        <Alert type="error" message={error} className="mb-6" />
 
         {bookings.length === 0 ? (
           <div className="text-center py-16">

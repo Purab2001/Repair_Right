@@ -30,7 +30,7 @@ const ShowAllButton = memo(function ShowAllButton({ onClick }) {
         onClick={onClick}
         className="btn btn-primary hover:bg-secondary btn-xl"
         whileHover={{
-          scale: 1.05,
+          scale: 1.01,
           boxShadow: "0 15px 30px -5px rgba(99, 102, 241, 0.5)",
           y: -2
         }}

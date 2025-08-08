@@ -1,9 +1,8 @@
-import React, { useState, useMemo } from 'react'
-import { useLoaderData } from 'react-router'
-import PageHelmet from '../components/PageHelmet'
-import ServicesPageHeader from '../components/ServicesPageHeader'
-import ServiceCard from '../components/ServiceCard'
-
+import React, { useState, useMemo } from "react";
+import { useLoaderData } from "react-router";
+import PageHelmet from "../components/PageHelmet";
+import ServicesPageHeader from "../components/ServicesPageHeader";
+import ServiceCard from "../ui/ServiceCard";
 
 const sortOptions = [
   { label: "Relevance", value: "relevance" },
@@ -30,14 +29,10 @@ const Services = () => {
     }
     switch (sortOption) {
       case "az":
-        filtered = [...filtered].sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
         break;
       case "za":
-        filtered = [...filtered].sort((a, b) =>
-          b.name.localeCompare(a.name)
-        );
+        filtered = [...filtered].sort((a, b) => b.name.localeCompare(a.name));
         break;
       default:
         // "relevance" - keep original order
@@ -62,9 +57,12 @@ const Services = () => {
         {filteredServices.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-semibold text-base-content mb-2">No Services Found</h3>
+            <h3 className="text-2xl font-semibold text-base-content mb-2">
+              No Services Found
+            </h3>
             <p className="text-base-content/70 mb-4">
-              We couldn't find any services matching "{searchTerm}". Try adjusting your search terms.
+              We couldn't find any services matching "{searchTerm}". Try
+              adjusting your search terms.
             </p>
             <button
               onClick={() => setSearchTerm("")}
@@ -85,4 +83,4 @@ const Services = () => {
   );
 };
 
-export default Services
+export default Services;

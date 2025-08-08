@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router';
-import { useAuth } from '../../context/AuthContext';
-import PopularServicesHeader from './PopularServicesHeader';
-import ServiceCard from './ServiceCard';
-import ShowAllButton from './ShowAllButton';
-import LoadingSpinner from '../../ui/LoadingSpinner';
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/AuthContext";
+import PopularServicesHeader from "./PopularServicesHeader";
+import ServiceCard from "../../ui/ServiceCard";
+import ShowAllButton from "./ShowAllButton";
+import LoadingSpinner from "../../ui/LoadingSpinner";
 
 const PopularServices = () => {
   const [services, setServices] = useState([]);
@@ -16,9 +16,11 @@ const PopularServices = () => {
     let isMounted = true;
     const fetchServices = async () => {
       try {
-        const response = await fetch('https://repair-right-server.vercel.app/services');
+        const response = await fetch(
+          "https://repair-right-server.vercel.app/services"
+        );
         const data = await response.json();
-        const mapped = data.slice(0, 6).map(service => ({
+        const mapped = data.slice(0, 6).map((service) => ({
           _id: service._id,
           imageUrl: service.imageUrl,
           serviceName: service.name,
@@ -34,29 +36,32 @@ const PopularServices = () => {
       }
     };
     fetchServices();
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const handleSeeMore = useCallback((serviceId) => {
-    if (!user) {
-      navigate('/login', { state: { from: `/services/${serviceId}` } });
-    } else {
-      navigate(`/services/${serviceId}`);
-    }
-  }, [user, navigate]);
+  const handleSeeMore = useCallback(
+    (serviceId) => {
+      if (!user) {
+        navigate("/login", { state: { from: `/services/${serviceId}` } });
+      } else {
+        navigate(`/services/${serviceId}`);
+      }
+    },
+    [user, navigate]
+  );
 
   const handleShowAll = useCallback(() => {
     if (!user) {
-      navigate('/login', { state: { from: '/services' } });
+      navigate("/login", { state: { from: "/services" } });
     } else {
-      navigate('/services');
+      navigate("/services");
     }
   }, [user, navigate]);
 
   if (loading) {
-    return (
-      <LoadingSpinner />
-    );
+    return <LoadingSpinner />;
   }
 
   return (
@@ -64,13 +69,11 @@ const PopularServices = () => {
       <div className="px-4 md:px-14 lg:px-28 container mx-auto">
         <PopularServicesHeader />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {services.slice(0, 6).map(service => (
+          {services.slice(0, 6).map((service) => (
             <ServiceCard
               key={service._id}
-              imageUrl={service.imageUrl}
-              serviceName={service.serviceName}
-              description={service.description}
-              price={service.price}
+              service={service}
+              variant="popular"
               onSeeMore={() => handleSeeMore(service._id)}
             />
           ))}

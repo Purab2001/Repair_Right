@@ -1,121 +1,127 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
 // eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion'
-import Lottie from 'lottie-react'
-import { useAuth } from '../context/AuthContext'
-import { FaUser, FaEnvelope, FaLock, FaImage } from 'react-icons/fa'
-import { FiEye, FiEyeOff, FiUserPlus } from 'react-icons/fi'
-import { FcGoogle } from 'react-icons/fc'
-import PageHelmet from '../components/PageHelmet'
-import registerData from '../assets/register.json'
-import { swalRegisterSuccess } from '../ui/CustomSwal'
+import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import { useAuth } from "../context/AuthContext";
+import { FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
+import { FiEye, FiEyeOff, FiUserPlus } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
+import PageHelmet from "../components/PageHelmet";
+import registerData from "../assets/register.json";
+import { swalRegisterSuccess } from "../ui/CustomSwal";
+import Alert from "../ui/Alert";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -20 }
-}
+  out: { opacity: 0, y: -20 },
+};
 
 const itemVariants = {
   initial: { opacity: 0, y: 20 },
-  in: { opacity: 1, y: 0 }
-}
+  in: { opacity: 1, y: 0 },
+};
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    photoURL: ''
-  })
-  const [showPassword, setShowPassword] = useState(false)
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+    name: "",
+    email: "",
+    password: "",
+    photoURL: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const { register, loginWithGoogle } = useAuth()
-  const navigate = useNavigate()
+  const { register, loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-    if (error) setError('')
-  }
+      [e.target.name]: e.target.value,
+    });
+    if (error) setError("");
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    const { name, email, password, photoURL } = formData
+    const { name, email, password, photoURL } = formData;
 
     if (!name || !email || !password) {
-      setError('Please fill in all required fields')
-      setLoading(false)
-      return
+      setError("Please fill in all required fields");
+      setLoading(false);
+      return;
     }
 
     if (name.length < 2) {
-      setError('Name must be at least 2 characters long')
-      setLoading(false)
-      return
+      setError("Name must be at least 2 characters long");
+      setLoading(false);
+      return;
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters long')
-      setLoading(false)
-      return
+      setError("Password must be at least 6 characters long");
+      setLoading(false);
+      return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setError('Please enter a valid email address')
-      setLoading(false)
-      return
+      setError("Please enter a valid email address");
+      setLoading(false);
+      return;
     }
 
     if (photoURL && photoURL.trim()) {
       try {
-        new URL(photoURL)
+        new URL(photoURL);
       } catch {
-        setError('Please enter a valid photo URL')
-        setLoading(false)
-        return
+        setError("Please enter a valid photo URL");
+        setLoading(false);
+        return;
       }
     }
 
-    const result = await register(name, email, password, photoURL.trim() || null)
+    const result = await register(
+      name,
+      email,
+      password,
+      photoURL.trim() || null
+    );
 
     if (result.success) {
-      await swalRegisterSuccess(name)
-      navigate('/')
+      await swalRegisterSuccess(name);
+      navigate("/");
     } else {
-      setError(result.error)
+      setError(result.error);
     }
 
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   const handleGoogleSignup = async () => {
-    setError('')
-    setLoading(true)
+    setError("");
+    setLoading(true);
 
-    const result = await loginWithGoogle()
+    const result = await loginWithGoogle();
 
     if (result.success) {
-      navigate('/')
+      navigate("/");
     } else {
-      setError(result.error)
+      setError(result.error);
     }
 
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
   return (
     <motion.div
       initial="initial"
@@ -145,13 +151,20 @@ const Register = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="w-full lg:w-1/2 p-4 lg:p-6 flex flex-col justify-center overflow-y-auto"
           >
-            <h2 className="text-2xl lg:text-3xl font-bold text-base-content mb-1 text-center">Create Account</h2>
-            <p className='text-center text-base-content/70 mb-4'>Join us today and start your journey.</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-base-content mb-1 text-center">
+              Create Account
+            </h2>
+            <p className="text-center text-base-content/70 mb-4">
+              Join us today and start your journey.
+            </p>
 
             <form onSubmit={handleSubmit} className="space-y-3">
               {/* Name Field */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-base-content/80 mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-base-content/80 mb-1"
+                >
                   Full Name <span className="text-error">*</span>
                 </label>
                 <div className="relative">
@@ -174,7 +187,10 @@ const Register = () => {
 
               {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-base-content/80 mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-base-content/80 mb-1"
+                >
                   Email Address <span className="text-error">*</span>
                 </label>
                 <div className="relative">
@@ -197,7 +213,10 @@ const Register = () => {
 
               {/* Password Field */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-base-content/80 mb-1">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-base-content/80 mb-1"
+                >
                   Password <span className="text-error">*</span>
                 </label>
                 <div className="relative">
@@ -230,7 +249,10 @@ const Register = () => {
 
               {/* Photo URL Field */}
               <div>
-                <label htmlFor="photoURL" className="block text-sm font-medium text-base-content/80 mb-1">
+                <label
+                  htmlFor="photoURL"
+                  className="block text-sm font-medium text-base-content/80 mb-1"
+                >
                   Photo URL (Optional)
                 </label>
                 <div className="relative">
@@ -249,18 +271,7 @@ const Register = () => {
                 </div>
               </div>
 
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="alert alert-error py-2"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-sm">{error}</span>
-                </motion.div>
-              )}
+              <Alert type="error" message={error} size="sm" />
 
               <div className="pt-2">
                 <motion.button
@@ -272,9 +283,25 @@ const Register = () => {
                 >
                   {loading ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Creating account...
                     </>
@@ -309,8 +336,11 @@ const Register = () => {
               transition={{ delay: 0.6, duration: 0.5 }}
               className="mt-3 text-center text-sm text-base-content/70"
             >
-              Already have an account?{' '}
-              <Link to="/login" className="font-medium text-primary hover:text-primary-focus hover:underline">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="font-medium text-primary hover:text-primary-focus hover:underline"
+              >
                 Sign In
               </Link>
             </motion.p>
@@ -318,7 +348,7 @@ const Register = () => {
         </div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
