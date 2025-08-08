@@ -136,7 +136,7 @@ const BookingModal = ({ isOpen, onClose, service, user, formData, onFormChange, 
           <button
             type="submit"
             disabled={isLoading || !formData.date}
-            className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer w-full"
+            className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer w-full"
           >
             {isLoading ? (
               <>

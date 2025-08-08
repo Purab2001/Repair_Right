@@ -96,10 +96,10 @@ const ServiceHero = ({ service, onBookNow, isServiceProvider, hasAlreadyBooked, 
               </div>
             ) : (
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onBookNow}
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
               >
                 <FiCalendar className="mr-2 text-lg" />
                 Book This Service
