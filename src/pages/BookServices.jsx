@@ -48,9 +48,9 @@ const BookedServices = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="bg-base-200 min-h-[calc(100vh-80px)]">
+    <div className="bg-base-200">
       <PageHelmet />
-      <div className="container mx-auto px-4 py-12 md:px-14 lg:px-28">
+      <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-secondary mb-2 tracking-tight">
             My Booked Services

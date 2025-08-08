@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { lazy, Suspense } from "react";
 import App from "../App";
 import LoadingSpinner from "../ui/LoadingSpinner";
@@ -6,6 +6,7 @@ import Error from "../ui/Error";
 import ProtectedRoute from "../components/ProtectedRoute";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import { serviceLoader, servicesLoader } from "../services/dataLoaders";
+import DashboardLayout from "../pages/Dashboard/DashboardLayout";
 
 const Home = lazy(() => import("../pages/Home"));
 const Services = lazy(() => import("../pages/Services"));
@@ -20,6 +21,7 @@ const BookedServices = lazy(() => import("../pages/BookServices"));
 const ServiceToDo = lazy(() => import("../pages/ServiceToDo"));
 const Profile = lazy(() => import("../pages/Profile"));
 const AboutUs = lazy(() => import("../pages/AboutUs"));
+const DashboardHome = lazy(() => import("../pages/Dashboard/DashboardHome"));
 
 // eslint-disable-next-line react-refresh/only-export-components
 const SuspenseWrapper = ({ children }) => (
@@ -84,13 +86,7 @@ const router = createBrowserRouter([
       },
       {
         path: "add-service",
-        element: (
-          <SuspenseWrapper>
-            <ProtectedRoute>
-              <AddService />
-            </ProtectedRoute>
-          </SuspenseWrapper>
-        ),
+        element: <Navigate to="/dashboard/add-service" replace />,
       },
       {
         path: "services/:id",
@@ -105,49 +101,44 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-service",
-        element: (
-          <SuspenseWrapper>
-            <ProtectedRoute>
-              <ManageService />
-            </ProtectedRoute>
-          </SuspenseWrapper>
-        ),
+        element: <Navigate to="/dashboard/manage-service" replace />,
       },
       {
         path: "booked-services",
-        element: (
-          <SuspenseWrapper>
-            <ProtectedRoute>
-              <BookedServices />
-            </ProtectedRoute>
-          </SuspenseWrapper>
-        ),
+        element: <Navigate to="/dashboard/booked-services" replace />,
       },
       {
         path: "service-to-do",
-        element: (
-          <SuspenseWrapper>
-            <ProtectedRoute>
-              <ServiceToDo />
-            </ProtectedRoute>
-          </SuspenseWrapper>
-        ),
+        element: <Navigate to="/dashboard/service-to-do" replace />,
       },
       {
-        path: "/profile",
+        path: "profile",
+        element: <Navigate to="/dashboard/profile" replace />,
+      },
+      // Dashboard section (protected, nested)
+      {
+        path: "dashboard",
         element: (
           <SuspenseWrapper>
             <ProtectedRoute>
-              <Profile />
+              <DashboardLayout />
             </ProtectedRoute>
           </SuspenseWrapper>
         ),
+        children: [
+          { index: true, element: <DashboardHome /> },
+          { path: "add-service", element: <AddService /> },
+          { path: "manage-service", element: <ManageService /> },
+          { path: "booked-services", element: <BookedServices /> },
+          { path: "service-to-do", element: <ServiceToDo /> },
+          { path: "profile", element: <Profile /> },
+        ],
       },
     ],
   },
   {
     path: "*",
-    element: <Error />
+    element: <Error />,
   },
 ]);
 

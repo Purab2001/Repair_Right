@@ -19,16 +19,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu, user }) => {
     { to: "/faqs", label: "FAQs", icon: FiCheckSquare },
     { to: "/about", label: "About Us", icon: FiHome },
     ...(user
-      ? [
-          { to: "/add-service", label: "Add Service", icon: FiPlus },
-          { to: "/manage-service", label: "Manage Service", icon: FiSettings },
-          {
-            to: "/booked-services",
-            label: "Booked Services",
-            icon: FiCalendar,
-          },
-          { to: "/service-to-do", label: "Service To-Do", icon: FiCheckSquare },
-        ]
+      ? [{ to: "/dashboard", label: "Dashboard", icon: FiSettings }]
       : []),
   ];
 

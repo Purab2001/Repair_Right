@@ -107,7 +107,7 @@ const ManageService = () => {
   return (
     <div className="bg-base-200">
       <PageHelmet />
-      <div className="container mx-auto px-4 py-12 md:px-14 lg:px-28">
+      <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-extrabold text-secondary mb-2">
