@@ -2,6 +2,7 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
 import { FiMapPin, FiCalendar, FiDollarSign, FiClock, FiShield, FiAward, FiUser, FiCheck } from 'react-icons/fi'
+import Button from "../../ui/Button";
 
 const ServiceHero = ({ service, onBookNow, isServiceProvider, hasAlreadyBooked, existingBooking }) => {
     return (
@@ -95,15 +96,16 @@ const ServiceHero = ({ service, onBookNow, isServiceProvider, hasAlreadyBooked, 
                 </p>
               </div>
             ) : (
-              <motion.button
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.95 }}
+              <Button
                 onClick={onBookNow}
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+                variant="primary"
+                size="lg"
+                className="font-semibold shadow-lg hover:shadow-xl"
+                icon={<FiCalendar className="mr-2 text-lg" />}
+                fullWidth={false}
               >
-                <FiCalendar className="mr-2 text-lg" />
                 Book This Service
-              </motion.button>
+              </Button>
             )}
           </div>
         </div>

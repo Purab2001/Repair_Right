@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import PopularServicesHeader from "./PopularServicesHeader";
 import ServiceCard from "../../ui/ServiceCard";
-import ShowAllButton from "./ShowAllButton";
 import LoadingSpinner from "../../ui/LoadingSpinner";
+import Button from "../../ui/Button";
 
 // Custom hook for responsive slice
 function useResponsiveSlice() {
@@ -101,7 +101,16 @@ const PopularServices = () => {
             />
           ))}
         </div>
-        <ShowAllButton onClick={handleShowAll} />
+        <div className="flex justify-center">
+          <Button
+            onClick={handleShowAll}
+            variant="primary"
+            size="lg"
+            className="mt-4"
+          >
+            Show All Services
+          </Button>
+        </div>
       </div>
     </section>
   );

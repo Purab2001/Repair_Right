@@ -1,10 +1,11 @@
 import React from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { FiPlus } from "react-icons/fi";
 import { useAddService } from "../../hooks/useAddService";
 import PageHelmet from "../../components/PageHelmet";
 import ServiceFormFields from "./ServiceFormFields";
-import SubmitButton from "./SubmitButton";
+import Button from "../../ui/Button";
 
 const formVariants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
@@ -96,7 +97,14 @@ const AddService = () => {
 
           <ServiceFormFields form={form} handleChange={handleChange} />
 
-          <SubmitButton loading={loading} onSubmit={handleSubmit} />
+          <Button
+            type="submit"
+            loading={loading}
+            fullWidth
+            icon={!loading && <FiPlus className="w-5 h-5" />}
+          >
+            {loading ? "Adding Service..." : "Add Service"}
+          </Button>
         </motion.form>
       </div>
     </div>

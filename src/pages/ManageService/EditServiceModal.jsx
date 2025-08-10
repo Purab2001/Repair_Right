@@ -8,6 +8,7 @@ import {
   FiFileText,
 } from "react-icons/fi";
 import Modal from "../../ui/Modal";
+import Button from "../../ui/Button";
 
 const EditServiceModal = ({
   isOpen,
@@ -157,31 +158,26 @@ const EditServiceModal = ({
 
         {/* Action Buttons */}
         <div className="flex gap-3 pt-4">
-          <button
+          <Button
             type="submit"
-            disabled={isLoading}
-            className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer flex-1"
+            variant="primary"
+            size="md"
+            fullWidth
+            loading={isLoading}
+            icon={!isLoading && <FiSave />}
           >
-            {isLoading ? (
-              <>
-                <span className="loading loading-spinner loading-sm"></span>
-                Updating Service...
-              </>
-            ) : (
-              <>
-                <FiSave className="mr-2 text-lg" />
-                Save Changes
-              </>
-            )}
-          </button>
+            {isLoading ? "Updating Service..." : "Save Changes"}
+          </Button>
 
-          <button
+          <Button
             type="button"
+            variant="ghost"
+            size="md"
             onClick={onClose}
-            className="inline-flex items-center justify-center px-6 py-3 bg-base-300 hover:bg-base-400 text-base-content font-semibold rounded-lg transition-all duration-200 cursor-pointer"
+            iconPosition="left"
           >
             Cancel
-          </button>
+          </Button>
         </div>
       </form>
     </Modal>

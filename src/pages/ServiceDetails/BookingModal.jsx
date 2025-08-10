@@ -1,5 +1,6 @@
 import React from "react";
 import { FiUser, FiCalendar, FiCheckCircle } from "react-icons/fi";
+import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 
 const BookingModal = ({
@@ -132,23 +133,19 @@ const BookingModal = ({
         </div>
 
         {/* Submit Button */}
-        <button
+        <Button
           type="submit"
+          fullWidth
+          variant="primary"
+          size="md"
           disabled={isLoading || !formData.date}
-          className="inline-flex items-center justify-center px-8 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer w-full"
+          loading={isLoading}
+          icon={!isLoading && <FiCheckCircle className="mr-2 text-lg" />}
         >
-          {isLoading ? (
-            <>
-              <span className="loading loading-spinner loading-sm"></span>
-              Processing Booking...
-            </>
-          ) : (
-            <>
-              <FiCheckCircle className="mr-2 text-lg" />
-              Confirm Booking - ${service.price}
-            </>
-          )}
-        </button>
+          {isLoading
+            ? "Processing Booking..."
+            : `Confirm Booking - $${service.price}`}
+        </Button>
       </form>
     </Modal>
   );

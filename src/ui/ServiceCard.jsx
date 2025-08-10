@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { FiMapPin, FiDollarSign, FiUser } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
+import Button from "./Button";
 
 const ServiceCard = ({
   service,
@@ -44,22 +45,23 @@ const ServiceCard = ({
     if (variant === "popular" && onSeeMore) {
       return (
         <div className="card-actions justify-end">
-          <button className="btn btn-primary" onClick={onSeeMore}>
+          <Button variant="primary" className="px-4 py-2 rounded-sm" size="sm" onClick={onSeeMore}>
             See More
-          </button>
+          </Button>
         </div>
       );
     }
 
     return (
       <div className="card-actions justify-end">
-        <Link
-          to={`/services/${serviceData.id}`}
-          className={`btn btn-primary btn-sm ${
-            isOwnService ? "btn-outline" : ""
-          }`}
-        >
-          {isOwnService ? "View Details" : "Book Now"}
+        <Link to={`/services/${serviceData.id}`}>
+          <Button
+            className="px-4 py-2 rounded-sm"
+            variant={isOwnService ? "outline" : "primary"}
+            size="sm"
+          >
+            {isOwnService ? "View Details" : "Book Now"}
+          </Button>
         </Link>
       </div>
     );

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 import PageHelmet from "../components/PageHelmet";
 import { FiImage, FiSave, FiUser } from "react-icons/fi";
+import Button from "../ui/Button";
+import { toastError, toastSuccess } from "../ui/CustomHotToast";
 
 const formVariants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
@@ -25,20 +27,15 @@ const Profile = () => {
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setSuccess("");
-    setError("");
     try {
       await updateProfile({ displayName: name, photoURL });
-      setSuccess("Profile updated successfully!");
+      toastSuccess("Profile updated successfully!");
     } catch (err) {
-      console.error(err);
-      setError(`Failed to update profile: ${err.message}`);
+      toastError(`Failed to update profile: ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -64,55 +61,7 @@ const Profile = () => {
           initial="hidden"
           animate="visible"
         >
-          {error && (
-            <motion.div
-              className="alert bg-red-500/10 border border-red-500/30 text-red-600 py-3 px-4 rounded-lg"
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                {error}
-              </div>
-            </motion.div>
-          )}
-
-          {success && (
-            <motion.div
-              className="alert bg-green-500/10 border border-green-500/30 text-green-700 py-3 px-4 rounded-lg"
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                {success}
-              </div>
-            </motion.div>
-          )}
+          {/* Custom alert using toast, so no inline alert needed */}
 
           <div className="flex flex-col items-center gap-4">
             <img
@@ -153,13 +102,9 @@ const Profile = () => {
             </div>
           </label>
 
-          <button
-            type="submit"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-secondary text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed w-full justify-center cursor-pointer"
-            disabled={loading}
-          >
-            <FiSave /> {loading ? "Saving..." : "Save Changes"}
-          </button>
+          <Button type="submit" loading={loading} fullWidth icon={<FiSave />}>
+            {loading ? "Saving..." : "Save Changes"}
+          </Button>
         </motion.form>
       </div>
     </div>
