@@ -136,15 +136,15 @@ const Header = () => {
                 </Button>
               </Link>
 
-              <Button
-                as={Link}
-                to="/dashboard/add-service"
-                variant="ghost"
-                size="md"
-                className="text-white font-semibold border border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20"
-              >
-                Offer Your Service
-              </Button>
+              <Link to="/dashboard/add-service">
+                <Button
+                  variant="ghost"
+                  size="md"
+                  className="text-white font-semibold border border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20"
+                >
+                  Offer Your Service
+                </Button>
+              </Link>
             </motion.div>
 
             {/* Stats */}
