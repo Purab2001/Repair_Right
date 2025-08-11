@@ -26,7 +26,7 @@ const Modal = ({
           </button>
         )}
 
-        {title && <h3 className="font-bold text-2xl mb-6">{title}</h3>}
+        {title && <h3 className="font-bold text-xl md:text-2xl mb-6">{title}</h3>}
 
         {children}
       </div>

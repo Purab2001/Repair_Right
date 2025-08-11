@@ -114,7 +114,7 @@ const ManageService = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="bg-base-200">
+    <div>
       <PageHelmet />
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
@@ -160,7 +160,7 @@ const ManageService = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-base-100 rounded-xl shadow p-6"
+                className="bg-base-200 rounded-xl p-6"
               >
                 <div className="flex flex-col lg:flex-row gap-6">
                   <div className="lg:w-48 h-32 rounded-lg overflow-hidden bg-gray-200">

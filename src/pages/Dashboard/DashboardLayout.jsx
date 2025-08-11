@@ -45,7 +45,7 @@ const DashboardLayout = () => {
           </aside>
 
           <main className="lg:col-span-9">
-            <div className="bg-base-100 rounded-xl border border-base-300 p-6 lg:min-h-[calc(100vh-144px)]">
+            <div className="bg-base-100 rounded-xl border border-base-300 lg:min-h-[calc(100vh-144px)]">
               <Outlet />
             </div>
           </main>

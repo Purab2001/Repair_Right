@@ -72,7 +72,7 @@ const ServiceToDo = () => {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="bg-base-200">
+    <div>
       <PageHelmet />
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="text-center mb-12">

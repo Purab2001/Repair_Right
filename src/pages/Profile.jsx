@@ -42,7 +42,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-base-200">
+    <div>
       <PageHelmet title="Profile" />
       <div className="container mx-auto px-4 md:px-6 py-12">
         <div className="text-center mb-12">
@@ -56,7 +56,7 @@ const Profile = () => {
 
         <motion.form
           onSubmit={handleSubmit}
-          className="space-y-6 bg-white p-6 rounded-xl"
+          className="space-y-6 bg-white rounded-xl"
           variants={formVariants}
           initial="hidden"
           animate="visible"
