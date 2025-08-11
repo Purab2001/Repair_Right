@@ -37,6 +37,21 @@ RepairRight is a comprehensive, full-stack home repair and service booking platf
 
 ---
 
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td align="center"><b>Homepage</b></td>
+    <td align="center"><b>Blog Details</b></td>
+  </tr>
+  <tr>
+    <td><img src="client/public/screenshot-homepage.png" alt="Homepage" height="300"></td>
+    <td><img src="client/public/screenshot-services.png" alt="Services" height="300"></td>
+  </tr>
+</table>
+
+---
+
 ## ✨ **Core Features**
 
 ### 🔐 **Authentication & Security**
